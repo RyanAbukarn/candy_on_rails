@@ -1,0 +1,1683 @@
+  [1m[35m (6.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCandies (20200812175158)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "candies" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200812175158"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateShelves (20200812175604)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "shelves" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "candy_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_37b34325de"
+FOREIGN KEY ("candy_id")
+  REFERENCES "candies" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_shelves_on_candy_id" ON "shelves" ("candy_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200812175604"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-08-12 17:56:39.737458"], ["updated_at", "2020-08-12 17:56:39.737458"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2020-08-12 10:57:23 -0700
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/ryansamer/.rvm/gems/ruby-2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/ryansamer/.rvm/gems/ruby-2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 18.1ms | Allocations: 409)
+Completed 200 OK in 52ms (Views: 29.3ms | ActiveRecord: 0.0ms | Allocations: 4891)
+
+
+Started GET "/shelf" for ::1 at 2020-08-12 10:57:39 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/shelf"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.4) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.4) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.4) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.4) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/shelves" for ::1 at 2020-08-12 10:57:47 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (1.7ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:15
+  Rendered shelves/index.html.erb within layouts/application (Duration: 11.3ms | Allocations: 1314)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /Users/ryansamer/Desktop/rails/csun_candy_shop/public/packs
+[Webpacker] Hash: 15d1bb7b54cf6326b9ba
+Version: webpack 4.44.1
+Time: 3095ms
+Built at: 08/12/2020 10:57:54 AM
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-9afcbb5693aa87623e69.js    124 KiB  application  [emitted] [immutable]  application
+js/application-9afcbb5693aa87623e69.js.map    139 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-9afcbb5693aa87623e69.js js/application-9afcbb5693aa87623e69.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 749 bytes {application} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 3 hidden modules
+
+Completed 200 OK in 7786ms (Views: 7735.2ms | ActiveRecord: 2.9ms | Allocations: 29760)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 10:58:03 -0700
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (2.2ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 20.4ms | Allocations: 1121)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 70ms (Views: 43.2ms | ActiveRecord: 3.7ms | Allocations: 5937)
+
+
+Started GET "/candies/new" for ::1 at 2020-08-12 10:58:05 -0700
+Processing by CandiesController#new as HTML
+  Rendering candies/new.html.erb within layouts/application
+  Rendered candies/_form.html.erb (Duration: 64.3ms | Allocations: 3762)
+  Rendered candies/new.html.erb within layouts/application (Duration: 68.8ms | Allocations: 4092)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 103ms (Views: 83.7ms | ActiveRecord: 2.2ms | Allocations: 10386)
+
+
+Started POST "/candies" for ::1 at 2020-08-12 10:58:08 -0700
+Processing by CandiesController#create as HTML
+  Parameters: {"authenticity_token"=>"Da+JDhd/Mql3xcqCZft2L4JY0LPFD58Ut0OiWYiPMNciaJgd6LJYf7xVLQ9zGajf6wU0Ii/ag5uQ/XcUyEg6jA==", "candy"=>{"name"=>"sweet"}, "commit"=>"Create Candy"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/candies_controller.rb:30:in `block in create'
+  [1m[36mCandy Create (6.7ms)[0m  [1m[32mINSERT INTO "candies" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "sweet"], ["created_at", "2020-08-12 17:58:08.824176"], ["updated_at", "2020-08-12 17:58:08.824176"]]
+  ↳ app/controllers/candies_controller.rb:30:in `block in create'
+  [1m[35m (29.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/candies_controller.rb:30:in `block in create'
+Redirected to http://localhost:3000/candies/1
+Completed 302 Found in 66ms (ActiveRecord: 36.3ms | Allocations: 2934)
+
+
+Started GET "/candies/1" for ::1 at 2020-08-12 10:58:08 -0700
+Processing by CandiesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCandy Load (0.4ms)[0m  [1m[34mSELECT "candies".* FROM "candies" WHERE "candies"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/candies_controller.rb:67:in `set_candy'
+  Rendering candies/show.html.erb within layouts/application
+  Rendered candies/show.html.erb within layouts/application (Duration: 7.1ms | Allocations: 228)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 77ms (Views: 43.2ms | ActiveRecord: 0.4ms | Allocations: 5289)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 10:58:11 -0700
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (2.3ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 6.0ms | Allocations: 762)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 24ms (Views: 20.2ms | ActiveRecord: 2.3ms | Allocations: 4719)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 10:58:17 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.6ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:15
+  Rendered shelves/index.html.erb within layouts/application (Duration: 6.5ms | Allocations: 642)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 94ms (Views: 88.7ms | ActiveRecord: 0.6ms | Allocations: 4610)
+
+
+Started GET "/shelves/new" for ::1 at 2020-08-12 10:58:20 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 11.9ms | Allocations: 1126)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 15.0ms | Allocations: 1448)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 80ms (Views: 44.2ms | ActiveRecord: 1.1ms | Allocations: 7981)
+
+
+Started POST "/shelves" for ::1 at 2020-08-12 10:58:25 -0700
+Processing by ShelvesController#create as HTML
+  Parameters: {"authenticity_token"=>"8QReALs7WCZslJIfEcjQ4qjnzQIaDGjh4KJKEu0DZSsgOzsYlNFewlcSgb1UCfAQ2oGQSWqXl5K8myzbEmehCA==", "shelf"=>{"name"=>"c1b1", "candy_id"=>"1"}, "commit"=>"Create Shelf"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/shelves_controller.rb:30:in `block in create'
+  [1m[36mCandy Load (1.6ms)[0m  [1m[34mSELECT "candies".* FROM "candies" WHERE "candies"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shelves_controller.rb:30:in `block in create'
+  [1m[36mShelf Create (5.2ms)[0m  [1m[32mINSERT INTO "shelves" ("name", "candy_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "c1b1"], ["candy_id", 1], ["created_at", "2020-08-12 17:58:25.400032"], ["updated_at", "2020-08-12 17:58:25.400032"]]
+  ↳ app/controllers/shelves_controller.rb:30:in `block in create'
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/shelves_controller.rb:30:in `block in create'
+Redirected to http://localhost:3000/shelves/1
+Completed 302 Found in 404ms (ActiveRecord: 8.8ms | Allocations: 9176)
+
+
+Started GET "/shelves/1" for ::1 at 2020-08-12 10:58:25 -0700
+Processing by ShelvesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mShelf Load (0.2ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves" WHERE "shelves"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shelves_controller.rb:67:in `set_shelf'
+  Rendering shelves/show.html.erb within layouts/application
+  Rendered shelves/show.html.erb within layouts/application (Duration: 2.0ms | Allocations: 251)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 24ms (Views: 20.8ms | ActiveRecord: 0.2ms | Allocations: 5039)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 10:58:30 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.3ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:15
+  Rendered shelves/index.html.erb within layouts/application (Duration: 3.4ms | Allocations: 763)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 25ms (Views: 23.8ms | ActiveRecord: 0.3ms | Allocations: 4740)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 11:55:24 -0700
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (0.5ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 12.9ms | Allocations: 4279)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /Users/ryansamer/Desktop/rails/csun_candy_shop/public/packs
+[Webpacker] Hash: 513562165ee9db1676ec
+Version: webpack 4.44.1
+Time: 6520ms
+Built at: 08/12/2020 11:55:35 AM
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-ad6cdc4eac1a56b77b55.js    655 KiB  application  [emitted] [immutable]  application
+js/application-ad6cdc4eac1a56b77b55.js.map    768 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-ad6cdc4eac1a56b77b55.js js/application-ad6cdc4eac1a56b77b55.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 770 bytes {application} [built]
+[./node_modules/webpack/buildin/global.js] (webpack)/buildin/global.js 905 bytes {application} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 6 hidden modules
+
+Completed 200 OK in 11427ms (Views: 11413.9ms | ActiveRecord: 1.1ms | Allocations: 97708)
+
+
+Started GET "/candies/new" for ::1 at 2020-08-12 11:55:47 -0700
+Processing by CandiesController#new as HTML
+  Rendering candies/new.html.erb within layouts/application
+  Rendered candies/_form.html.erb (Duration: 458.6ms | Allocations: 13533)
+  Rendered candies/new.html.erb within layouts/application (Duration: 466.1ms | Allocations: 13871)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 584ms (Views: 563.2ms | ActiveRecord: 0.0ms | Allocations: 21797)
+
+
+Started GET "/candies/new" for ::1 at 2020-08-12 12:01:30 -0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by CandiesController#new as HTML
+  Rendering candies/new.html.erb within layouts/application
+  Rendered candies/_form.html.erb (Duration: 39.2ms | Allocations: 3804)
+  Rendered candies/new.html.erb within layouts/application (Duration: 42.9ms | Allocations: 4110)
+Completed 500 Internal Server Error in 64ms (ActiveRecord: 0.0ms | Allocations: 5322)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <%= bootstrap_form_with(model: candy, local: true) do |form|  %>
+  <% if candy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(candy.errors.count, "error") %> prohibited this candy from being saved:</h2>
+
+      <ul>
+        <% candy.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "Candy name:" %>
+    <%= form.text_field :name  placeholder: "Enter the name her..."%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+
+):
+1:    <%= bootstrap_form_with(model: candy, local: true) do |form|  %>
+2:      <% if candy.errors.any? %>
+3:        <div id="error_explanation">
+4:          <h2><%= pluralize(candy.errors.count, "error") %> prohibited this candy from being saved:</h2>
+5:    
+6:          <ul>
+7:            <% candy.errors.full_messages.each do |message| %>
+8:              <li><%= message %></li>
+9:            <% end %>
+10:          </ul>
+11:        </div>
+12:      <% end %>
+13:    
+14:      <div class="field">
+15:        <%= form.label "Candy name:" %>
+16:        <%= form.text_field :name  placeholder: "Enter the name her..."%>
+17:      </div>
+18:    
+19:      <div class="actions">
+20:        <%= form.submit %>
+21:      </div>
+22:    <% end %>
+  
+app/views/candies/_form.html.erb:16: syntax error, unexpected local variable or method, expecting ')'
+app/views/candies/_form.html.erb:16: syntax error, unexpected local variable or method, expecting ')'
+app/views/candies/_form.html.erb:16: syntax error, unexpected local variable or method, expecting ')'
+app/views/candies/_form.html.erb:16: syntax error, unexpected local variable or method, expecting ')'
+app/views/candies/_form.html.erb:16: syntax error, unexpected local variable or method, expecting ')'
+app/views/candies/_form.html.erb:16: syntax error, unexpected local variable or method, expecting ')'
+app/views/candies/new.html.erb:3
+Started GET "/candies/new" for ::1 at 2020-08-12 12:01:49 -0700
+Processing by CandiesController#new as HTML
+  Rendering candies/new.html.erb within layouts/application
+  Rendered candies/_form.html.erb (Duration: 8.0ms | Allocations: 1224)
+  Rendered candies/new.html.erb within layouts/application (Duration: 9.6ms | Allocations: 1551)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 51ms (Views: 47.9ms | ActiveRecord: 0.0ms | Allocations: 10402)
+
+
+Started GET "/candies/new" for ::1 at 2020-08-12 12:02:59 -0700
+Processing by CandiesController#new as HTML
+  Rendering candies/new.html.erb within layouts/application
+  Rendered candies/_form.html.erb (Duration: 4.5ms | Allocations: 1325)
+  Rendered candies/new.html.erb within layouts/application (Duration: 9.5ms | Allocations: 1631)
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 0.0ms | Allocations: 2832)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <%= bootstrap_form_with(model: candy, local: true) do |form|  %>
+  <% if candy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(candy.errors.count, "error") %> prohibited this candy from being saved:</h2>
+
+      <ul>
+        <% candy.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "Candy name:" %>
+    <%= form.text_field , placeholder: "Enter the name her..."%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+
+):
+1:    <%= bootstrap_form_with(model: candy, local: true) do |form|  %>
+2:      <% if candy.errors.any? %>
+3:        <div id="error_explanation">
+4:          <h2><%= pluralize(candy.errors.count, "error") %> prohibited this candy from being saved:</h2>
+5:    
+6:          <ul>
+7:            <% candy.errors.full_messages.each do |message| %>
+8:              <li><%= message %></li>
+9:            <% end %>
+10:          </ul>
+11:        </div>
+12:      <% end %>
+13:    
+14:      <div class="field">
+15:        <%= form.label "Candy name:" %>
+16:        <%= form.text_field , placeholder: "Enter the name her..."%>
+17:      </div>
+18:    
+19:      <div class="actions">
+20:        <%= form.submit %>
+21:      </div>
+22:    <% end %>
+  
+app/views/candies/_form.html.erb:16: syntax error, unexpected tLABEL, expecting '='
+app/views/candies/_form.html.erb:16: syntax error, unexpected tLABEL, expecting '='
+app/views/candies/_form.html.erb:16: syntax error, unexpected tLABEL, expecting '='
+app/views/candies/_form.html.erb:16: syntax error, unexpected tLABEL, expecting '='
+app/views/candies/_form.html.erb:16: syntax error, unexpected tLABEL, expecting '='
+app/views/candies/_form.html.erb:16: syntax error, unexpected tLABEL, expecting '='
+app/views/candies/new.html.erb:3
+Started GET "/candies/new" for ::1 at 2020-08-12 12:03:14 -0700
+Processing by CandiesController#new as HTML
+  Rendering candies/new.html.erb within layouts/application
+  Rendered candies/_form.html.erb (Duration: 5.1ms | Allocations: 994)
+  Rendered candies/new.html.erb within layouts/application (Duration: 7.2ms | Allocations: 1320)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 47ms (Views: 44.4ms | ActiveRecord: 0.0ms | Allocations: 10100)
+
+
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:04:30 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 527.1ms | Allocations: 135084)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 530.7ms | Allocations: 135392)
+Completed 500 Internal Server Error in 582ms (ActiveRecord: 2.7ms | Allocations: 140240)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `candy' for #<#<Class:0x00007f99fb6e8420>:0x00007f99fb6e2200>
+Did you mean?  and):
+    1: <%= bootstrap_form_with(model: candy, local: true) do |form|  %>
+    2:   <% if shelf.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(shelf.errors.count, "error") %> prohibited this shelf from being saved:</h2>
+  
+app/views/shelves/_form.html.erb:1
+app/views/shelves/new.html.erb:3
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:04:52 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 6.6ms | Allocations: 1831)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 8.3ms | Allocations: 2157)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 48ms (Views: 45.5ms | ActiveRecord: 0.0ms | Allocations: 10949)
+
+
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:05:07 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 3.4ms | Allocations: 1367)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 8.8ms | Allocations: 1692)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 38ms (Views: 35.4ms | ActiveRecord: 0.0ms | Allocations: 10368)
+
+
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:11:10 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 17.1ms | Allocations: 1373)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 22.0ms | Allocations: 1698)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 113ms (Views: 101.4ms | ActiveRecord: 0.0ms | Allocations: 10406)
+
+
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:19:24 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 43.5ms | Allocations: 1373)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 57.9ms | Allocations: 1704)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 361ms (Views: 343.5ms | ActiveRecord: 0.0ms | Allocations: 23142)
+
+
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:21:07 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 19.7ms | Allocations: 1373)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 29.8ms | Allocations: 1704)
+Completed 500 Internal Server Error in 76ms (ActiveRecord: 0.0ms | Allocations: 3975)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>CsunCandyShop</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <div class="bg-dark collapse" id="navbarHeader" style="">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About</h4>
+              <p class="text-muted">This is a CSUN candy shop where you cand add candies and shelves to display the best candies CSUN has</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="" class="text-white">Like on Facebook</a></li>
+                <li><a href="#" class="text-white">Email me</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+          <%= image_tag("csun_logo.png") width="16" height="16" %>
+            <strong>CSUN CANDY</strong>
+          </a>
+          <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
+
+):
+1:    <!DOCTYPE html>
+2:    <html>
+3:      <head>
+4:        <title>CsunCandyShop</title>
+5:        <%= csrf_meta_tags %>
+6:        <%= csp_meta_tag %>
+7:    
+8:        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+9:        <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+10:    
+11:        <div class="bg-dark collapse" id="navbarHeader" style="">
+12:            <div class="container">
+13:              <div class="row">
+14:                <div class="col-sm-8 col-md-7 py-4">
+15:                  <h4 class="text-white">About</h4>
+16:                  <p class="text-muted">This is a CSUN candy shop where you cand add candies and shelves to display the best candies CSUN has</p>
+17:                </div>
+18:                <div class="col-sm-4 offset-md-1 py-4">
+19:                  <h4 class="text-white">Contact</h4>
+20:                  <ul class="list-unstyled">
+21:                    <li><a href="" class="text-white">Like on Facebook</a></li>
+22:                    <li><a href="#" class="text-white">Email me</a></li>
+23:                  </ul>
+24:                </div>
+25:              </div>
+26:            </div>
+27:          </div>
+28:          <div class="navbar navbar-dark bg-dark shadow-sm">
+29:            <div class="container d-flex justify-content-between">
+30:              <a href="#" class="navbar-brand d-flex align-items-center">
+31:              <%= image_tag("csun_logo.png") width="16" height="16" %>
+32:                <strong>CSUN CANDY</strong>
+33:              </a>
+34:              <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+35:                <span class="navbar-toggler-icon"></span>
+36:              </button>
+37:            </div>
+38:          </div>
+39:    
+40:      </head>
+41:    
+42:      <body>
+43:        <%= yield %>
+44:      </body>
+45:    </html>
+  
+app/views/layouts/application.html.erb:31: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected local variable or method, expecting ')'
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:21:53 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 21.7ms | Allocations: 1373)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 30.2ms | Allocations: 1699)
+Completed 500 Internal Server Error in 58ms (ActiveRecord: 0.0ms | Allocations: 3968)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>CsunCandyShop</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <div class="bg-dark collapse" id="navbarHeader" style="">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About</h4>
+              <p class="text-muted">This is a CSUN candy shop where you cand add candies and shelves to display the best candies CSUN has</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="" class="text-white">Like on Facebook</a></li>
+                <li><a href="#" class="text-white">Email me</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+          <%= image_tag("csun_logo.png") style: 'height:16;width:16;' %>
+            <strong>CSUN CANDY</strong>
+          </a>
+          <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
+
+):
+1:    <!DOCTYPE html>
+2:    <html>
+3:      <head>
+4:        <title>CsunCandyShop</title>
+5:        <%= csrf_meta_tags %>
+6:        <%= csp_meta_tag %>
+7:    
+8:        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+9:        <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+10:    
+11:        <div class="bg-dark collapse" id="navbarHeader" style="">
+12:            <div class="container">
+13:              <div class="row">
+14:                <div class="col-sm-8 col-md-7 py-4">
+15:                  <h4 class="text-white">About</h4>
+16:                  <p class="text-muted">This is a CSUN candy shop where you cand add candies and shelves to display the best candies CSUN has</p>
+17:                </div>
+18:                <div class="col-sm-4 offset-md-1 py-4">
+19:                  <h4 class="text-white">Contact</h4>
+20:                  <ul class="list-unstyled">
+21:                    <li><a href="" class="text-white">Like on Facebook</a></li>
+22:                    <li><a href="#" class="text-white">Email me</a></li>
+23:                  </ul>
+24:                </div>
+25:              </div>
+26:            </div>
+27:          </div>
+28:          <div class="navbar navbar-dark bg-dark shadow-sm">
+29:            <div class="container d-flex justify-content-between">
+30:              <a href="#" class="navbar-brand d-flex align-items-center">
+31:              <%= image_tag("csun_logo.png") style: 'height:16;width:16;' %>
+32:                <strong>CSUN CANDY</strong>
+33:              </a>
+34:              <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+35:                <span class="navbar-toggler-icon"></span>
+36:              </button>
+37:            </div>
+38:          </div>
+39:    
+40:      </head>
+41:    
+42:      <body>
+43:        <%= yield %>
+44:      </body>
+45:    </html>
+  
+app/views/layouts/application.html.erb:31: syntax error, unexpected tLABEL, expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected tLABEL, expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected tLABEL, expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected tLABEL, expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected tLABEL, expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected tLABEL, expecting ')'
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:22:13 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 11.1ms | Allocations: 1373)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 14.8ms | Allocations: 1699)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.0ms | Allocations: 3968)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>CsunCandyShop</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <div class="bg-dark collapse" id="navbarHeader" style="">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About</h4>
+              <p class="text-muted">This is a CSUN candy shop where you cand add candies and shelves to display the best candies CSUN has</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="" class="text-white">Like on Facebook</a></li>
+                <li><a href="#" class="text-white">Email me</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+          <%= image_tag("csun_logo.png"), style: 'height:16;width:16;' %>
+            <strong>CSUN CANDY</strong>
+          </a>
+          <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
+
+):
+1:    <!DOCTYPE html>
+2:    <html>
+3:      <head>
+4:        <title>CsunCandyShop</title>
+5:        <%= csrf_meta_tags %>
+6:        <%= csp_meta_tag %>
+7:    
+8:        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+9:        <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+10:    
+11:        <div class="bg-dark collapse" id="navbarHeader" style="">
+12:            <div class="container">
+13:              <div class="row">
+14:                <div class="col-sm-8 col-md-7 py-4">
+15:                  <h4 class="text-white">About</h4>
+16:                  <p class="text-muted">This is a CSUN candy shop where you cand add candies and shelves to display the best candies CSUN has</p>
+17:                </div>
+18:                <div class="col-sm-4 offset-md-1 py-4">
+19:                  <h4 class="text-white">Contact</h4>
+20:                  <ul class="list-unstyled">
+21:                    <li><a href="" class="text-white">Like on Facebook</a></li>
+22:                    <li><a href="#" class="text-white">Email me</a></li>
+23:                  </ul>
+24:                </div>
+25:              </div>
+26:            </div>
+27:          </div>
+28:          <div class="navbar navbar-dark bg-dark shadow-sm">
+29:            <div class="container d-flex justify-content-between">
+30:              <a href="#" class="navbar-brand d-flex align-items-center">
+31:              <%= image_tag("csun_logo.png"), style: 'height:16;width:16;' %>
+32:                <strong>CSUN CANDY</strong>
+33:              </a>
+34:              <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+35:                <span class="navbar-toggler-icon"></span>
+36:              </button>
+37:            </div>
+38:          </div>
+39:    
+40:      </head>
+41:    
+42:      <body>
+43:        <%= yield %>
+44:      </body>
+45:    </html>
+  
+app/views/layouts/application.html.erb:31: syntax error, unexpected ',', expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected ',', expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected ',', expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected ',', expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected ',', expecting ')'
+app/views/layouts/application.html.erb:31: syntax error, unexpected ',', expecting ')'
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:22:35 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 32.8ms | Allocations: 1373)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 50.1ms | Allocations: 1699)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 265ms (Views: 223.6ms | ActiveRecord: 0.0ms | Allocations: 10982)
+
+
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:24:10 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 18.9ms | Allocations: 1373)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 23.2ms | Allocations: 1698)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 111ms (Views: 99.3ms | ActiveRecord: 0.0ms | Allocations: 10881)
+
+
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:25:50 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 29.3ms | Allocations: 1373)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 33.6ms | Allocations: 1698)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 157ms (Views: 139.4ms | ActiveRecord: 0.0ms | Allocations: 10882)
+
+
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:26:04 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 8.2ms | Allocations: 1373)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 10.9ms | Allocations: 1698)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 95ms (Views: 92.3ms | ActiveRecord: 0.0ms | Allocations: 10914)
+
+
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:26:10 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 4.9ms | Allocations: 1097)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 6.2ms | Allocations: 1180)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 45ms (Views: 43.4ms | ActiveRecord: 0.0ms | Allocations: 9414)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 12:27:08 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (3.1ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:15
+  Rendered shelves/index.html.erb within layouts/application (Duration: 87.3ms | Allocations: 1065)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 228ms (Views: 192.3ms | ActiveRecord: 3.1ms | Allocations: 10342)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 12:28:34 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.4ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:15
+  Rendered shelves/index.html.erb within layouts/application (Duration: 7.1ms | Allocations: 1010)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 72ms (Views: 64.9ms | ActiveRecord: 0.4ms | Allocations: 10297)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 12:29:09 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (1.8ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:15
+  Rendered shelves/index.html.erb within layouts/application (Duration: 16.8ms | Allocations: 1016)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 94ms (Views: 80.8ms | ActiveRecord: 1.8ms | Allocations: 10267)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 12:29:15 -0700
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (1.2ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 14.1ms | Allocations: 1007)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 56ms (Views: 51.5ms | ActiveRecord: 1.2ms | Allocations: 9827)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 12:29:17 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.2ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:15
+  Rendered shelves/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 771)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 62ms (Views: 59.6ms | ActiveRecord: 0.2ms | Allocations: 9032)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 12:29:21 -0700
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (0.4ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 757)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 56ms (Views: 52.5ms | ActiveRecord: 0.4ms | Allocations: 9005)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 12:34:58 -0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (0.6ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 11.8ms | Allocations: 1010)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 78ms (Views: 71.1ms | ActiveRecord: 0.6ms | Allocations: 10386)
+
+
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:35:42 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 42.6ms | Allocations: 1374)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 55.8ms | Allocations: 1700)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 254ms (Views: 245.3ms | ActiveRecord: 0.0ms | Allocations: 10974)
+
+
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:35:55 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 8.0ms | Allocations: 1373)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 11.4ms | Allocations: 1698)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 62ms (Views: 60.0ms | ActiveRecord: 0.0ms | Allocations: 11051)
+
+
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:47:28 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 12.4ms | Allocations: 1373)
+  Rendered shelves/_candy.html.erb (Duration: 624.7ms | Allocations: 135103)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 643.2ms | Allocations: 137013)
+Completed 500 Internal Server Error in 671ms (ActiveRecord: 0.0ms | Allocations: 138210)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `candies' for #<#<Class:0x00007f99f7741240>:0x00007f99f773b840>
+Did you mean?  candies_url):
+    1: <div class="my-3 p-3 bg-white rounded shadow-sm">
+    2:         <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
+    3:         <% candies.each do |candy| %>
+    4:         <div class="media text-muted pt-3">
+    5:           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+    6:             <strong class="d-block text-gray-dark"><%= candy.id %></strong>
+  
+app/views/shelves/_candy.html.erb:3
+app/views/shelves/new.html.erb:5
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:54:28 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 11.2ms | Allocations: 1433)
+  Rendered shelves/_candy.html.erb (Duration: 4.8ms | Allocations: 2443)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 24.4ms | Allocations: 4417)
+Completed 500 Internal Server Error in 54ms (ActiveRecord: 0.0ms | Allocations: 8742)
+
+
+  
+ActionView::Template::Error (undefined method `each' for "hello":String):
+    1: <div class="my-3 p-3 bg-white rounded shadow-sm">
+    2:         <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
+    3:         <% candies.each do |candy| %>
+    4:         <div class="media text-muted pt-3">
+    5:           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+    6:             <strong class="d-block text-gray-dark"><%= candy.id %></strong>
+  
+app/views/shelves/_candy.html.erb:3
+app/views/shelves/new.html.erb:5
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:56:27 -0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 16.0ms | Allocations: 1156)
+  [1m[36mCandy Load (1.0ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/shelves/_candy.html.erb:3
+  Rendered shelves/_candy.html.erb (Duration: 23.7ms | Allocations: 2780)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 44.0ms | Allocations: 4077)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 154ms (Views: 120.9ms | ActiveRecord: 3.4ms | Allocations: 16440)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 12:56:46 -0700
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (0.3ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 6.5ms | Allocations: 1046)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 89ms (Views: 85.5ms | ActiveRecord: 0.3ms | Allocations: 9950)
+
+
+Started GET "/candies/new" for ::1 at 2020-08-12 12:56:48 -0700
+Processing by CandiesController#new as HTML
+  Rendering candies/new.html.erb within layouts/application
+  Rendered candies/_form.html.erb (Duration: 5.3ms | Allocations: 998)
+  Rendered candies/new.html.erb within layouts/application (Duration: 7.8ms | Allocations: 1318)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 34ms (Views: 31.6ms | ActiveRecord: 0.0ms | Allocations: 9722)
+
+
+Started POST "/candies" for ::1 at 2020-08-12 12:56:52 -0700
+Processing by CandiesController#create as HTML
+  Parameters: {"authenticity_token"=>"s1joAAiIUeyXkpvfUzy9pIdD7E6uRZcHp/cuXqh4EqOcn/kT90U7OlwCfFJF3mNU7h4I30SQi4iASfsT6L8Y+A==", "candy"=>{"name"=>"sweet"}, "commit"=>"Create Candy"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/candies_controller.rb:30:in `block in create'
+  [1m[36mCandy Create (10.0ms)[0m  [1m[32mINSERT INTO "candies" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "sweet"], ["created_at", "2020-08-12 19:56:52.032102"], ["updated_at", "2020-08-12 19:56:52.032102"]]
+  ↳ app/controllers/candies_controller.rb:30:in `block in create'
+  [1m[35m (7.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/candies_controller.rb:30:in `block in create'
+Redirected to http://localhost:3000/candies/2
+Completed 302 Found in 45ms (ActiveRecord: 17.4ms | Allocations: 2916)
+
+
+Started GET "/candies/2" for ::1 at 2020-08-12 12:56:52 -0700
+Processing by CandiesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mCandy Load (0.5ms)[0m  [1m[34mSELECT "candies".* FROM "candies" WHERE "candies"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/candies_controller.rb:67:in `set_candy'
+  Rendering candies/show.html.erb within layouts/application
+  Rendered candies/show.html.erb within layouts/application (Duration: 2.8ms | Allocations: 226)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 72ms (Views: 42.1ms | ActiveRecord: 0.5ms | Allocations: 12102)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 12:56:54 -0700
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (0.2ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 4.5ms | Allocations: 882)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 52ms (Views: 49.5ms | ActiveRecord: 0.2ms | Allocations: 9171)
+
+
+Started GET "/candies/new" for ::1 at 2020-08-12 12:56:55 -0700
+Processing by CandiesController#new as HTML
+  Rendering candies/new.html.erb within layouts/application
+  Rendered candies/_form.html.erb (Duration: 3.7ms | Allocations: 725)
+  Rendered candies/new.html.erb within layouts/application (Duration: 4.2ms | Allocations: 807)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 37ms (Views: 36.0ms | ActiveRecord: 0.0ms | Allocations: 9076)
+
+
+Started POST "/candies" for ::1 at 2020-08-12 12:56:58 -0700
+Processing by CandiesController#create as HTML
+  Parameters: {"authenticity_token"=>"L0hgPfj3DkUZ+m94y2M+p8RTq2bBFLcbsPQIKc/+yLMAj3EuBzpkk9JqiPXdgeBXrQ5P9yvBq5SXSt1kjznC6A==", "candy"=>{"name"=>"sweet"}, "commit"=>"Create Candy"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/candies_controller.rb:30:in `block in create'
+  [1m[36mCandy Create (1.9ms)[0m  [1m[32mINSERT INTO "candies" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "sweet"], ["created_at", "2020-08-12 19:56:58.329014"], ["updated_at", "2020-08-12 19:56:58.329014"]]
+  ↳ app/controllers/candies_controller.rb:30:in `block in create'
+  [1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/candies_controller.rb:30:in `block in create'
+Redirected to http://localhost:3000/candies/3
+Completed 302 Found in 12ms (ActiveRecord: 4.2ms | Allocations: 2684)
+
+
+Started GET "/candies/3" for ::1 at 2020-08-12 12:56:58 -0700
+Processing by CandiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mCandy Load (0.2ms)[0m  [1m[34mSELECT "candies".* FROM "candies" WHERE "candies"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/candies_controller.rb:67:in `set_candy'
+  Rendering candies/show.html.erb within layouts/application
+  Rendered candies/show.html.erb within layouts/application (Duration: 0.4ms | Allocations: 79)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 38ms (Views: 35.4ms | ActiveRecord: 0.2ms | Allocations: 11428)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 12:56:59 -0700
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (0.6ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 3.6ms | Allocations: 1001)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 34ms (Views: 31.6ms | ActiveRecord: 0.6ms | Allocations: 9284)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 12:57:01 -0700
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (0.4ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 4.3ms | Allocations: 1001)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 37ms (Views: 35.7ms | ActiveRecord: 0.4ms | Allocations: 9260)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 12:57:04 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.6ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:15
+  Rendered shelves/index.html.erb within layouts/application (Duration: 5.7ms | Allocations: 1040)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 33ms (Views: 28.9ms | ActiveRecord: 0.6ms | Allocations: 9483)
+
+
+Started GET "/shelves/new" for ::1 at 2020-08-12 12:57:08 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 4.8ms | Allocations: 1091)
+  [1m[36mCandy Load (0.6ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/shelves/_candy.html.erb:3
+  Rendered shelves/_candy.html.erb (Duration: 3.0ms | Allocations: 656)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 8.8ms | Allocations: 1886)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 38ms (Views: 36.0ms | ActiveRecord: 0.6ms | Allocations: 10176)
+
+
+Started GET "/" for ::1 at 2020-08-12 17:21:59 -0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/ryansamer/.rvm/gems/ruby-2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/ryansamer/.rvm/gems/ruby-2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 46.9ms | Allocations: 186)
+Completed 200 OK in 111ms (Views: 55.3ms | ActiveRecord: 0.0ms | Allocations: 1230)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:25:28 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (6.3ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:15
+  Rendered shelves/index.html.erb within layouts/application (Duration: 94.3ms | Allocations: 3659)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 363ms (Views: 282.4ms | ActiveRecord: 6.3ms | Allocations: 13538)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:28:30 -0700
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (2.6ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:15
+  Rendered shelves/index.html.erb within layouts/application (Duration: 39.7ms | Allocations: 3970)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 123ms (Views: 104.7ms | ActiveRecord: 4.9ms | Allocations: 13854)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:31:40 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (1.2ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 18.4ms | Allocations: 1046)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 91ms (Views: 78.1ms | ActiveRecord: 1.2ms | Allocations: 10306)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:32:22 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.3ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 5.1ms | Allocations: 1042)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 117ms (Views: 115.3ms | ActiveRecord: 0.3ms | Allocations: 10322)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:32:55 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.8ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 15.5ms | Allocations: 1047)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 99ms (Views: 90.0ms | ActiveRecord: 0.8ms | Allocations: 10309)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:33:06 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.2ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 4.0ms | Allocations: 1045)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 32ms (Views: 30.1ms | ActiveRecord: 0.2ms | Allocations: 10425)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:33:29 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.8ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 12.0ms | Allocations: 1039)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 77ms (Views: 70.9ms | ActiveRecord: 0.8ms | Allocations: 10306)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:33:35 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.4ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 791)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 59ms (Views: 56.8ms | ActiveRecord: 0.4ms | Allocations: 9080)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:34:39 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.8ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 12.2ms | Allocations: 1044)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 84ms (Views: 78.7ms | ActiveRecord: 0.8ms | Allocations: 10422)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:34:53 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.3ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 8.4ms | Allocations: 1042)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 40ms (Views: 37.5ms | ActiveRecord: 0.3ms | Allocations: 10317)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:35:24 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.3ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 4.6ms | Allocations: 1040)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 51ms (Views: 49.0ms | ActiveRecord: 0.3ms | Allocations: 10418)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:35:37 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.2ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1041)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 51ms (Views: 48.4ms | ActiveRecord: 0.2ms | Allocations: 10403)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:36:15 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.2ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 7.7ms | Allocations: 1044)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 48ms (Views: 45.1ms | ActiveRecord: 0.2ms | Allocations: 10424)
+
+
+Started GET "/shelves/1" for ::1 at 2020-08-12 17:36:26 -0700
+Processing by ShelvesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mShelf Load (0.6ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves" WHERE "shelves"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shelves_controller.rb:69:in `set_shelf'
+  Rendering shelves/show.html.erb within layouts/application
+  Rendered shelves/show.html.erb within layouts/application (Duration: 1.2ms | Allocations: 245)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 58ms (Views: 26.4ms | ActiveRecord: 0.6ms | Allocations: 9305)
+
+
+Started GET "/shelves/1/edit" for ::1 at 2020-08-12 17:36:29 -0700
+Processing by ShelvesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mShelf Load (0.3ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves" WHERE "shelves"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shelves_controller.rb:69:in `set_shelf'
+  Rendering shelves/edit.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 23.4ms | Allocations: 1445)
+  Rendered shelves/edit.html.erb within layouts/application (Duration: 29.7ms | Allocations: 1821)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 73ms (Views: 58.1ms | ActiveRecord: 0.3ms | Allocations: 10751)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:36:33 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.6ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 786)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 46ms (Views: 44.4ms | ActiveRecord: 0.6ms | Allocations: 9059)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 17:36:44 -0700
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (1.0ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 11.7ms | Allocations: 3477)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 104ms (Views: 44.5ms | ActiveRecord: 2.0ms | Allocations: 13544)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 17:36:54 -0700
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (0.4ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 3.8ms | Allocations: 1001)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 37ms (Views: 35.9ms | ActiveRecord: 0.4ms | Allocations: 9379)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:36:57 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.8ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 4.3ms | Allocations: 792)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 86ms (Views: 84.0ms | ActiveRecord: 0.8ms | Allocations: 9110)
+
+
+Started GET "/shelves/new" for ::1 at 2020-08-12 17:37:00 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 5.8ms | Allocations: 1096)
+  [1m[36mCandy Load (0.3ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/shelves/_candy.html.erb:3
+  Rendered shelves/_candy.html.erb (Duration: 6.8ms | Allocations: 814)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 16.0ms | Allocations: 2313)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 51ms (Views: 45.5ms | ActiveRecord: 0.3ms | Allocations: 10839)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:37:30 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.3ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 791)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 50ms (Views: 47.9ms | ActiveRecord: 0.3ms | Allocations: 9055)
+
+
+Started DELETE "/shelves/1" for ::1 at 2020-08-12 17:37:39 -0700
+Processing by ShelvesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"H7ZmF3ZB/qbwQcx7ToMfpQ6Ms7i138voeuDn/uk1ILUv0K7RlYza4Hj6oP8v9Ie4D7YarmvjNBa4NTP9VLoEQQ==", "id"=>"1"}
+  [1m[36mShelf Load (0.4ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves" WHERE "shelves"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shelves_controller.rb:69:in `set_shelf'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/shelves_controller.rb:59:in `destroy'
+  [1m[36mShelf Destroy (2.2ms)[0m  [1m[31mDELETE FROM "shelves" WHERE "shelves"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/shelves_controller.rb:59:in `destroy'
+  [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/shelves_controller.rb:59:in `destroy'
+Redirected to http://localhost:3000/shelves
+Completed 302 Found in 31ms (ActiveRecord: 5.0ms | Allocations: 2820)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:37:39 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.2ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 637)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 29ms (Views: 27.9ms | ActiveRecord: 0.2ms | Allocations: 8940)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:37:43 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.2ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 2.5ms | Allocations: 635)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 37ms (Views: 35.5ms | ActiveRecord: 0.2ms | Allocations: 8907)
+
+
+Started GET "/shelves/new" for ::1 at 2020-08-12 17:37:46 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 3.9ms | Allocations: 1091)
+  [1m[36mCandy Load (0.3ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/shelves/_candy.html.erb:3
+  Rendered shelves/_candy.html.erb (Duration: 4.4ms | Allocations: 656)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 9.2ms | Allocations: 1886)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 39ms (Views: 37.9ms | ActiveRecord: 0.3ms | Allocations: 10280)
+
+
+Started POST "/shelves" for ::1 at 2020-08-12 17:37:51 -0700
+Processing by ShelvesController#create as HTML
+  Parameters: {"authenticity_token"=>"q2NAh+xKbXR63VCqiuooZp7EHSZdGvX28QT07nYsv0R6XCWfw6BrkEFbQwjPKwiU7KJAbS2BCoWtPZIniUh7Zw==", "shelf"=>{"name"=>"c1b1", "candy_id"=>"2"}, "commit"=>"Create Shelf"}
+  [1m[35m (0.7ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/shelves_controller.rb:32:in `block in create'
+  [1m[36mCandy Load (0.4ms)[0m  [1m[34mSELECT "candies".* FROM "candies" WHERE "candies"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/shelves_controller.rb:32:in `block in create'
+  [1m[36mShelf Create (1.0ms)[0m  [1m[32mINSERT INTO "shelves" ("name", "candy_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "c1b1"], ["candy_id", 2], ["created_at", "2020-08-13 00:37:51.296309"], ["updated_at", "2020-08-13 00:37:51.296309"]]
+  ↳ app/controllers/shelves_controller.rb:32:in `block in create'
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/shelves_controller.rb:32:in `block in create'
+Redirected to http://localhost:3000/shelves/2
+Completed 302 Found in 93ms (ActiveRecord: 3.4ms | Allocations: 7901)
+
+
+Started GET "/shelves/2" for ::1 at 2020-08-12 17:37:51 -0700
+Processing by ShelvesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mShelf Load (0.2ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves" WHERE "shelves"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/shelves_controller.rb:69:in `set_shelf'
+  Rendering shelves/show.html.erb within layouts/application
+  Rendered shelves/show.html.erb within layouts/application (Duration: 0.4ms | Allocations: 82)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 65ms (Views: 61.5ms | ActiveRecord: 0.2ms | Allocations: 8976)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:38:09 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.5ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 783)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 33ms (Views: 31.3ms | ActiveRecord: 0.5ms | Allocations: 9165)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:38:21 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.3ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 3.6ms | Allocations: 783)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 36ms (Views: 33.8ms | ActiveRecord: 0.3ms | Allocations: 9058)
+
+
+Started GET "/shelves/new" for ::1 at 2020-08-12 17:38:29 -0700
+Processing by ShelvesController#new as HTML
+  Rendering shelves/new.html.erb within layouts/application
+  Rendered shelves/_form.html.erb (Duration: 3.1ms | Allocations: 1088)
+  [1m[36mCandy Load (0.3ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/shelves/_candy.html.erb:3
+  Rendered shelves/_candy.html.erb (Duration: 2.0ms | Allocations: 656)
+  Rendered shelves/new.html.erb within layouts/application (Duration: 5.9ms | Allocations: 1883)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 34ms (Views: 31.9ms | ActiveRecord: 0.3ms | Allocations: 10192)
+
+
+Started POST "/shelves" for ::1 at 2020-08-12 17:38:34 -0700
+Processing by ShelvesController#create as HTML
+  Parameters: {"authenticity_token"=>"wwWwomXLtutWdwdvxC3y8VKeWo7tGcC9zcfI3a4SgagSOtW6SiGwD23xFM2B7NIDIPgHxZ2CP86R/q4UUXZFiw==", "shelf"=>{"name"=>"c1b1", "candy_id"=>"3"}, "commit"=>"Create Shelf"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/shelves_controller.rb:32:in `block in create'
+  [1m[36mCandy Load (0.2ms)[0m  [1m[34mSELECT "candies".* FROM "candies" WHERE "candies"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/shelves_controller.rb:32:in `block in create'
+  [1m[36mShelf Create (1.2ms)[0m  [1m[32mINSERT INTO "shelves" ("name", "candy_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "c1b1"], ["candy_id", 3], ["created_at", "2020-08-13 00:38:34.126386"], ["updated_at", "2020-08-13 00:38:34.126386"]]
+  ↳ app/controllers/shelves_controller.rb:32:in `block in create'
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/shelves_controller.rb:32:in `block in create'
+Redirected to http://localhost:3000/shelves/3
+Completed 302 Found in 13ms (ActiveRecord: 3.2ms | Allocations: 3949)
+
+
+Started GET "/shelves/3" for ::1 at 2020-08-12 17:38:34 -0700
+Processing by ShelvesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mShelf Load (0.4ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves" WHERE "shelves"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/shelves_controller.rb:69:in `set_shelf'
+  Rendering shelves/show.html.erb within layouts/application
+  Rendered shelves/show.html.erb within layouts/application (Duration: 0.4ms | Allocations: 82)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 32ms (Views: 29.1ms | ActiveRecord: 0.4ms | Allocations: 8903)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 17:38:36 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.3ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 4.9ms | Allocations: 931)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 47ms (Views: 45.5ms | ActiveRecord: 0.3ms | Allocations: 9296)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 18:03:48 -0700
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.7ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 21.7ms | Allocations: 4349)
+Completed 500 Internal Server Error in 58ms (ActiveRecord: 0.7ms | Allocations: 6112)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 0, expected 2)):
+     6: <div class="my-3 p-3 bg-white rounded shadow-sm">
+     7:         <h6 class="border-bottom border-gray pb-2 mb-0">Where are the candies</h6>
+     8:         <% @shelves.each do |shelf| %>
+     9:         <% if (prevShelf == shelf.name)%>
+    10:         <% newShelf%>
+    11:         <% end %>
+    12:         <div class="media text-muted pt-3">
+  
+app/helpers/shelves_helper.rb:2:in `prevShelf'
+app/views/shelves/index.html.erb:9
+app/views/shelves/index.html.erb:8
+Started GET "/shelves" for ::1 at 2020-08-12 18:04:06 -0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.6ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 15.6ms | Allocations: 4179)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 74ms (Views: 67.5ms | ActiveRecord: 2.2ms | Allocations: 14113)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 18:04:11 -0700
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (0.8ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 23.9ms | Allocations: 3443)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 77ms (Views: 66.8ms | ActiveRecord: 3.0ms | Allocations: 12954)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 18:04:22 -0700
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (0.3ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 3.8ms | Allocations: 1001)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 32ms (Views: 30.5ms | ActiveRecord: 0.3ms | Allocations: 9279)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 18:04:24 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.8ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 8.4ms | Allocations: 942)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 51ms (Views: 39.3ms | ActiveRecord: 0.8ms | Allocations: 9211)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 18:06:11 -0700
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (2.1ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 20.2ms | Allocations: 3916)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 59ms (Views: 48.6ms | ActiveRecord: 3.7ms | Allocations: 12861)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 18:06:19 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.4ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 5.8ms | Allocations: 933)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 58ms (Views: 56.2ms | ActiveRecord: 0.4ms | Allocations: 9255)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 18:07:04 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (1.0ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 14.8ms | Allocations: 933)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 95ms (Views: 86.7ms | ActiveRecord: 1.0ms | Allocations: 9196)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 18:07:08 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.2ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 933)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 36ms (Views: 34.6ms | ActiveRecord: 0.2ms | Allocations: 9204)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 18:07:10 -0700
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (0.8ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 16.8ms | Allocations: 3235)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 52ms (Views: 39.3ms | ActiveRecord: 2.3ms | Allocations: 12287)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 18:07:14 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.3ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 4.5ms | Allocations: 933)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 53ms (Views: 50.3ms | ActiveRecord: 0.3ms | Allocations: 9253)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 18:07:33 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.3ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 23.5ms | Allocations: 1192)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 86ms (Views: 81.6ms | ActiveRecord: 0.3ms | Allocations: 10578)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 18:07:37 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.3ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 2.4ms | Allocations: 939)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 23ms (Views: 21.6ms | ActiveRecord: 0.3ms | Allocations: 9205)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 18:07:39 -0700
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (0.4ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 4.8ms | Allocations: 1235)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 41ms (Views: 38.3ms | ActiveRecord: 0.4ms | Allocations: 10075)
+
+
+Started GET "/candies/1" for ::1 at 2020-08-12 18:07:42 -0700
+Processing by CandiesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCandy Load (0.4ms)[0m  [1m[34mSELECT "candies".* FROM "candies" WHERE "candies"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/candies_controller.rb:67:in `set_candy'
+  Rendering candies/show.html.erb within layouts/application
+  Rendered candies/show.html.erb within layouts/application (Duration: 3.6ms | Allocations: 220)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 45ms (Views: 37.9ms | ActiveRecord: 0.4ms | Allocations: 9273)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 18:07:44 -0700
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (0.2ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1004)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 54ms (Views: 52.9ms | ActiveRecord: 0.2ms | Allocations: 9314)
+
+
+Started GET "/candies/new" for ::1 at 2020-08-12 18:07:47 -0700
+Processing by CandiesController#new as HTML
+  Rendering candies/new.html.erb within layouts/application
+  Rendered candies/_form.html.erb (Duration: 7.5ms | Allocations: 995)
+  Rendered candies/new.html.erb within layouts/application (Duration: 9.6ms | Allocations: 1321)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 31ms (Views: 29.1ms | ActiveRecord: 0.0ms | Allocations: 9781)
+
+
+Started GET "/candies" for ::1 at 2020-08-12 18:07:50 -0700
+Processing by CandiesController#index as HTML
+  Rendering candies/index.html.erb within layouts/application
+  [1m[36mCandy Load (0.3ms)[0m  [1m[34mSELECT "candies".* FROM "candies"[0m
+  ↳ app/views/candies/index.html.erb:14
+  Rendered candies/index.html.erb within layouts/application (Duration: 5.1ms | Allocations: 1006)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 50ms (Views: 49.1ms | ActiveRecord: 0.3ms | Allocations: 9382)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 18:07:53 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (1.7ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 4.7ms | Allocations: 940)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 41ms (Views: 38.4ms | ActiveRecord: 1.7ms | Allocations: 9234)
+
+
+Started GET "/shelves/2" for ::1 at 2020-08-12 18:07:57 -0700
+Processing by ShelvesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mShelf Load (0.5ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves" WHERE "shelves"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/shelves_controller.rb:68:in `set_shelf'
+  Rendering shelves/show.html.erb within layouts/application
+  Rendered shelves/show.html.erb within layouts/application (Duration: 3.3ms | Allocations: 248)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 43ms (Views: 36.0ms | ActiveRecord: 0.5ms | Allocations: 9304)
+
+
+Started GET "/shelves" for ::1 at 2020-08-12 18:07:59 -0700
+Processing by ShelvesController#index as HTML
+  Rendering shelves/index.html.erb within layouts/application
+  [1m[36mShelf Load (0.2ms)[0m  [1m[34mSELECT "shelves".* FROM "shelves"[0m
+  ↳ app/views/shelves/index.html.erb:8
+  Rendered shelves/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 934)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 28ms (Views: 26.8ms | ActiveRecord: 0.2ms | Allocations: 9196)
+
+

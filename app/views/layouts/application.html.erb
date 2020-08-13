@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CsunCandyShop</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <div class="bg-dark collapse" id="navbarHeader" style="">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About</h4>
+              <p class="text-muted">This is a CSUN candy shop where you cand add candies and shelves to display the best candies CSUN has</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Pages</h4>
+              <ul class="list-unstyled">
+                <li><%= link_to "shelves page", "/shelves", class:'btn btn-primary' %></li></br>
+                <li><%= link_to "candies page", "/candies", class:'btn btn-primary' %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+          <%= image_tag "csun_logo.png", style: 'height:25px;width:25px;'  %>
+            <strong>CSUN CANDY</strong>
+          </a>
+          <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

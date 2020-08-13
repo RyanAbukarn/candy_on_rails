@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Store</h1>
+
+
+<div class="my-3 p-3 bg-white rounded shadow-sm">
+        <h6 class="border-bottom border-gray pb-2 mb-0">Where are the candies</h6>
+        <% @shelves.each do |shelf| %>
+
+        <div class="media text-muted pt-3">
+          <h2 class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">Shelf name: <%= shelf.name%></strong>
+            Candy id: <%= shelf.candy_id %>
+            </h2>
+        <%= link_to 'Show', shelf, class:"btn btn-primary" %>|
+        <%= link_to 'Edit', edit_shelf_path(shelf),class:"btn btn-primary" %>|
+        <%= link_to 'Destroy', shelf, method: :delete, class:"btn btn-primary",data: { confirm: 'Are you sure?' } %>
+        </div>
+  <% end %>
+      </div>
+  
+
+<br>
+
+<%= link_to 'New Shelf', new_shelf_path %>
